@@ -22,6 +22,12 @@ class Minitest::Test
     end
   end
 
+  def with_kill(value)
+    PgHero.stub(:kill_value, value) do
+      yield
+    end
+  end
+
   def explain_normalized?
     database.server_version_num >= 160000
   end
